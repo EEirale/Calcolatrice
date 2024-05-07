@@ -1,0 +1,62 @@
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto;
+    border: dotted 2px black;
+
+    width: 80%;
+}
+
+#body {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+
+    border: solid 2px black;
+    width: 95%;
+}
+#keyboard {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+
+    border: solid 2px pink;
+}
+#commands {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+
+    border: solid 2px yellow;
+}
+#pad {
+    display: flex;
+    flex-direction: row;
+
+    border: solid 2px blue;
+}
+#operators {
+    display: grid;
+    row-gap: 10px;
+    width: 20%;
+    padding-left: 5px;
+    
+    border: solid 2px green;
+}
+#numbers {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    padding-right: 5px;
+    width: 80%;
+
+    border: solid 2px red;
+}
+
+.key {
+    height: 75px;
+    border-radius: 1rem;
+}
