@@ -12,39 +12,37 @@
     <body>
         <div id="body">
             <div id="screen">
-                <p> CALCULATOR </p>
+                <p id="result"> CALCULATOR </p>
             </div>
             <div id="keyboard">
                 <div id="commands">
-                    <button class="op key" id="(">(</button>
-                    <button class="op key" id=")">)</button>
-                    <button class="op key" id="%">%</button>
-                    <button class="op key" id="sqrt">sqrt</button>
-                    <button class="op key" id="^">^</button>
-                    <button class="op key" id="pi">pi</button>
-                    <button class="op key" id="ANS">ANS</button>
-                    <button class="op key" id="AC">AC</button>
+                    <button class="op key" id="open-bracket" onclick="pressed(this)">(</button>
+                    <button class="op key" id="closed-bracket" onclick="pressed(this)">)</button>
+                    <button class="op key" id="mod" onclick="pressed(this)">%</button>
+                    <button class="op key" id="sqrt" onclick="pressed(this)">sqrt</button>
+                    <button class="op key" id="elevation" onclick="pressed(this)">^</button>
+                    <button class="op key" id="pi" onclick="pressed(this)">𝜋</button>
+                    <button class="op key" id="ANS" onclick="ans()">ANS</button>
+                    <button class="op key" id="AC" onclick="canc()">AC</button>
                 </div>
                 <div id="pad">
                     <div id="numbers">
-                        <button class="number key" id="7">7</button>
-                        <button class="number key" id="8">8</button>
-                        <button class="number key" id="9">9</button>
-                        <button class="number key" id="4">4</button>
-                        <button class="number key" id="5">5</button>
-                        <button class="number key" id="6">6</button>
-                        <button class="number key" id="1">1</button>
-                        <button class="number key" id="2">2</button>
-                        <button class="number key" id="3">3</button>
-                        <button class="number key" id="0">0</button>
-                        <button class="number key" id=".">.</button>
-                        <button class="number key" id="=">=</button>
-                    </div>
-                    <div id="operators">
-                        <button class="op key" id="/">/</button>
-                        <button class="op key" id="*">*</button>
-                        <button class="op key" id="-">-</button>
-                        <button class="op key" id="+">+</button>
+                        <button class="number key" id="7" onclick="pressed(this)">7</button>
+                        <button class="number key" id="8" onclick="pressed(this)">8</button>
+                        <button class="number key" id="9" onclick="pressed(this)">9</button>
+                        <button class="op key" id="divide" onclick="pressed(this)">/</button>
+                        <button class="number key" id="4" onclick="pressed(this)">4</button>
+                        <button class="number key" id="5" onclick="pressed(this)">5</button>
+                        <button class="number key" id="6" onclick="pressed(this)">6</button>
+                        <button class="op key" id="multiply" onclick="pressed(this)">*</button>
+                        <button class="number key" id="1" onclick="pressed(this)">1</button>
+                        <button class="number key" id="2" onclick="pressed(this)">2</button>
+                        <button class="number key" id="3" onclick="pressed(this)">3</button>
+                        <button class="op key" id="minus" onclick="pressed(this)">-</button>
+                        <button class="number key" id="0"onclick="pressed(this)">0</button>
+                        <button class="number key" id="dot"onclick="pressed(this)">.</button>
+                        <button class="number key" id="equal" onclick="calc()">=</button>
+                        <button class="op key" id="plus" onclick="pressed(this)">+</button>
                     </div>
                 </div> 
             </div>
