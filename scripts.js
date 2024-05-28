@@ -4,7 +4,12 @@ let numbers = [];
 let operators_index = [];
 
 function pressed(element) { 
-    equation += element.textContent; 
+    if(element.textContent === "𝜋"){
+        equation += "3.1415"; 
+    } else {
+        equation += element.textContent; 
+    }
+    
     document.getElementById("result").innerHTML = equation; 
 }
 
@@ -16,10 +21,13 @@ function canc() {
 function calc() { 
     numbers = [];
     operators_index = []
+	
     parser(); 
+	
     let j = 0; 
     result = numbers[j++]; 
     console.log("result: " + result); 
+	
     for (let i = 0; i < operators_index.length; i++) { 
         console.log("operator: " + equation[operators_index[i]]);
         switch (equation[operators_index[i]]) { 
@@ -30,31 +38,37 @@ function calc() {
                 result -= numbers[j++]; 
                 break;
             case "*": 
-                if (operators_index[i] === "+") {
+                if (operators_index[i-1] == "+") {
                     result -= numbers[j - 1];
+					console.log("* --> + : " + result);
                     result += (numbers[j - 1] * numbers[j++]);
-                } else if (operators_index[i] === "-") {
+                } else if (operators_index[i-1] == "-") {
                     result += numbers[j - 1];
+					console.log("* --> - : " + result);
                     result -= (numbers[j - 1] * numbers[j++]);
                 } else {
                     result *= numbers[j++];
                 }
                 break; 
             case "/":
-                if (operators_index[i] === "+") {
+                if (operators_index[i-1] == "+") {
                     result -= numbers[j - 1];
+					console.log("/ --> + : " + result);
                     result += (numbers[j - 1] / numbers[j++]);
-                } else if (operators_index[i] === "-") {
+                } else if (operators_index[i-1] == "-") {
                     result += numbers[j - 1];
+					console.log("/ --> - : " + result);
                     result -= (numbers[j - 1] / numbers[j++]);
-                } else if (operators_index[i] === "*"){
-                    result += numbers[j - 1];
-                    result -= (numbers[j - 1] / numbers[j++]);
+                } else if (operators_index[i-1] == "*"){
+                    result /= numbers[j - 1];
+					console.log("/ --> * : " + result);
+                    result *= (numbers[j - 1] / numbers[j++]);
                 } else {
                     result /= numbers[j++]
                 }
                 break;
-        } console.log("result: " + result); 
+        } 
+		console.log("result: " + result); 
     } 
     equation = ""; 
     last_result = result; 
@@ -70,10 +84,10 @@ function parser() {
     let start = 0; let end = 0;
 
     for (let i = 1; i < equation.length; i++) {
-        if (isNaN(equation.charAt(i))) {
+        if (["+", "-", "*", "/"].includes(equation.charAt(i))){
             end = i;
             try {
-                number = parseInt(equation.substring(start, end))
+                number = parseFloat(equation.substring(start, end))
                 console.log(number)
             } catch (error) {
                 alert("invalid number format")
@@ -86,9 +100,14 @@ function parser() {
 
     end = equation.length;
     try {
-        number = parseInt(equation.substring(start, end))
+        number = parseFloat(equation.substring(start, end))
+		if(Number.isInteger(number)){
+			number = parseInt(number);
+			console.log(number);
+			numbers.push(number);
+		}
         console.log(number)
-        numbers.push(number);
+		numbers.push(number);
     } catch (error) {
         alert("invalid number format");
     }
