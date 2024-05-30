@@ -1,59 +1,66 @@
 let equation = "";
-let last_result;
-let numbers = [];
-let operators_index = [];
+let start = 0;
+let end = 0;
+let last_result; 
+let numbers = []; 
+let operators= [];
 
-function pressed(element){
-    equation += element.textContent;
-    document.getElementById("result").innerHTML = equation;
-}
-
-function canc(){
-    equation = "";
-    document.getElementById("result").innerHTML = "CALCULATOR";
-}
-
-function calc(){
-    parser();
-    let j = 0;
-    result = numbers[j++];
-    console.log("result: " + result);
-    for(let i=0; i < operators_index.length; i++){
-        console.log("operator: " + equation[operators_index[i]])
-        switch(equation[operators_index[i]]){
-            case "+":
-                result += numbers[j++];
-                break;
-            case "-":
-                result -= numbers[j++];
-                break;
-        }
-        console.log("result: " + result);
+function pressed(element) { 
+    if(element.textContent === "𝜋"){
+        equation += "3.1415"; 
+    } else if (["+", "-", "*", "/", "%", "^", "√"].includes(element.textContent)) {
+        operators.push(element.textContent);
+        end = equation.length;
+        numbers.push(parser());
+        equation += element.textContent;
+        start = equation.length;
     }
-    equation = "";
-    last_result = result;
-    document.getElementById("result").innerHTML = result;
+    else {
+        equation += element.textContent; 
+    }
+    
+    document.getElementById("result").innerHTML = equation; 
 }
 
-function ans() {
-    equation += last_result;
-    document.getElementById("result").innerHTML = equation;
+function canc() { 
+    equation = "";
+    start = 0;
+    end = 0;
+    numbers = [];
+    operators_index = []
+    document.getElementById("result").innerHTML = "CALCULATOR"; 
+}
+
+function calc() {
+    while(operators.find("^") > 0){
+
+    }
+}
+
+function ans() { 
+    equation += "ANS";
+    numbers.push(last_result) 
+    document.getElementById("result").innerHTML = equation; 
 }
 
 function parser() {
-    let start = 0;
-    let end = 0;
+    let number;
 
-    for(let i=1; i<equation.length; i++){
-        if(isNaN(equation.charAt(i))){
-            end = i;
-            numbers.push(parseInt(equation.substring(start, end)));
-            start = end+1;
-            operators_index.push(i);
-        }
+    try {
+        number = parseFloat(equation.substring(start, end))
+    } catch (error) {
+        alert("invalid number format")
     }
-    if(isNaN(equation.charAt(equation.length-1))){
-        end = equation.length-1;
-        numbers.push(parseInt(equation.substring(start, end)));
+    try {
+        number = parseFloat(equation.substring(start, end))
+		if(Number.isInteger(number)){
+			number = parseInt(number);
+            console.log(number)
+			return number;
+		}
+        console.log(number)
+		return number;
+    } catch (error) {
+        alert("invalid number format");
     }
 }
